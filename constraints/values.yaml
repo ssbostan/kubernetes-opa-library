@@ -1,0 +1,13 @@
+enableK8sBlockPodPrivilegedContainer: true
+enableK8sBlockServiceLoadBalancer: true
+enableK8sBlockServiceNodePort: true
+
+enableK8sBlockNamespaceWithoutRequiredLabels: true
+namespaceRequiredLabels:
+  - k8s.io/project
+
+excludedNamespaces:
+  - gatekeeper-system
+  - kube-system
+  - kube-node-lease
+  - kube-public

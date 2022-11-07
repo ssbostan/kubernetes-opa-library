@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+helm install gatekeeper-templates -n gatekeeper-system ./templates
+
+sleep 1
+
+helm install gatekeeper-constraints -n gatekeeper-system ./constraints
