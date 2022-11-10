@@ -1,0 +1,21 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodhostnetworknamespace
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodHostNetworkNamespace
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodhostnetworknamespace
+
+        violation[{"msg": msg}] {
+          input.review.object.spec.hostNetwork == true
+          msg := "Sharing hostNetwork is restricted in this cluster."
+        }

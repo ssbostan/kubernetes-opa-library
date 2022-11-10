@@ -1,3 +1,7 @@
+enableK8sBlockPodHostIPCNamespace: true
+enableK8sBlockPodHostNetworkNamespace: true
+enableK8sBlockPodHostPIDNamespace: true
+
 enableK8sBlockPodPrivilegedContainer: true
 enableK8sBlockServiceLoadBalancer: true
 enableK8sBlockServiceNodePort: true

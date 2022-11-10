@@ -1,0 +1,21 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodhostipcnamespace
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodHostIPCNamespace
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodhostipcnamespace
+
+        violation[{"msg": msg}] {
+          input.review.object.spec.hostIPC == true
+          msg := "Sharing hostIPC is restricted in this cluster."
+        }
