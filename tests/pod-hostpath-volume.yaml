@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-opa-gatekeeper-block-pod-hostpath-volume
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  containers:
+    - name: alpine
+      image: alpine:latest
+      command: ["sleep", "10000"]
+      volumeMounts:
+        - name: test
+          mountPath: /test
+  volumes:
+    - name: test
+      hostPath:
+        path: /

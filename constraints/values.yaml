@@ -10,6 +10,14 @@ enableK8sBlockNamespaceWithoutRequiredLabels: true
 namespaceRequiredLabels:
   - k8s.io/project
 
+enableK8sBlockPodVolumeTypes: true
+blockedPodVolumeTypes:
+  - hostPath
+  - emptyDir
+  - ephemeral
+  - flexVolume
+  - flocker
+
 excludedNamespaces:
   - gatekeeper-system
   - kube-system
