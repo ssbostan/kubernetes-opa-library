@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+helm upgrade gatekeeper-templates -n gatekeeper-system ./templates
+
+sleep 10
+
+helm upgrade gatekeeper-constraints -n gatekeeper-system ./constraints

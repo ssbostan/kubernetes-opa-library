@@ -2,6 +2,6 @@
 
 helm uninstall gatekeeper-constraints -n gatekeeper-system
 
-sleep 1
+sleep 10
 
 helm uninstall gatekeeper-templates -n gatekeeper-system
