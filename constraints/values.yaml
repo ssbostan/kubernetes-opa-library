@@ -1,3 +1,5 @@
+enableK8sBlockPodOSNameWindows: true
+
 enableK8sBlockPodHostIPCNamespace: true
 enableK8sBlockPodHostNetworkNamespace: true
 enableK8sBlockPodHostPIDNamespace: true

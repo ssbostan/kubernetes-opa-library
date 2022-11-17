@@ -1,0 +1,21 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodosnamewindows
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodOSNameWindows
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodosnamewindows
+
+        violation[{"msg": msg}] {
+          lower(input.review.object.spec.os.name) == "windows"
+          msg := "Running Windows pods is disabled in this cluster."
+        }
