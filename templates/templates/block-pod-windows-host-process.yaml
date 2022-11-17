@@ -1,0 +1,39 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodwindowshostprocess
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodWindowsHostProcess
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodwindowshostprocess
+
+        import future.keywords.in
+
+        violation[{"msg": msg}] {
+          check_windows_host_process == true
+          msg := "Running hostProcess windows containers is disabled in this cluster."
+        }
+
+        check_windows_host_process {
+          input.review.object.spec.securityContext.windowsOptions.hostProcess == true
+        }
+
+        check_windows_host_process {
+          input.review.object.spec.containers[_].securityContext.windowsOptions.hostProcess == true
+        }
+
+        check_windows_host_process {
+          input.review.object.spec.ephemeralContainers[_].securityContext.windowsOptions.hostProcess == true
+        }
+
+        check_windows_host_process {
+          input.review.object.spec.initContainers[_].securityContext.windowsOptions.hostProcess == true
+        }

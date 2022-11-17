@@ -1,0 +1,16 @@
+{{ if .Values.enableK8sBlockPodWindowsHostProcess }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockPodWindowsHostProcess
+metadata:
+  name: k8s-block-pod-windows-host-process
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    excludedNamespaces:
+{{ toYaml .Values.excludedNamespaces | indent 6 }}
+{{ end }}
