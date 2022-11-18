@@ -16,6 +16,18 @@ spec:
         package k8sblockpodprivilegedcontainer
 
         violation[{"msg": msg}] {
+          check_pod_privileged_container == true
+          msg := "Creating privileged containers is restricted on this cluster."
+        }
+
+        check_pod_privileged_container {
           input.review.object.spec.containers[_].securityContext.privileged == true
-          msg := "Creating privileged containers are restricted on this cluster."
+        }
+
+        check_pod_privileged_container {
+          input.review.object.spec.ephemeralContainers[_].securityContext.privileged == true
+        }
+
+        check_pod_privileged_container {
+          input.review.object.spec.initContainers[_].securityContext.privileged == true
         }
