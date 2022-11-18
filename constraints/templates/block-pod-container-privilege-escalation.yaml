@@ -1,0 +1,16 @@
+{{ if .Values.enableK8sBlockPodContainerPrivilegeEscalation }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockPodContainerPrivilegeEscalation
+metadata:
+  name: k8s-block-pod-container-privilege-escalation
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    excludedNamespaces:
+{{ toYaml .Values.excludedNamespaces | indent 6 }}
+{{ end }}
