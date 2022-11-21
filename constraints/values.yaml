@@ -7,6 +7,7 @@ enableK8sBlockPodHostPIDNamespace: true
 
 enableK8sBlockPodPrivilegedContainer: true
 enableK8sBlockPodContainerPrivilegeEscalation: true
+enableK8sBlockPodRunRootUserContainer: true
 
 enableK8sBlockServiceLoadBalancer: true
 enableK8sBlockServiceNodePort: true
