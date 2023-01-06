@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-opa-gatekeeper-block-pod-untrusted-image-registries
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  containers:
+    - name: prometheus
+      image: quay.io/prometheus/prometheus:latest
+      securityContext:
+        runAsNonRoot: true

@@ -1,0 +1,19 @@
+{{ if .Values.enableK8sBlockPodUntrustedImageRegistries }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockPodUntrustedImageRegistries
+metadata:
+  name: k8s-block-pod-untrusted-image-registries
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    excludedNamespaces:
+{{ toYaml .Values.excludedNamespaces | indent 6 }}
+  parameters:
+    trustedImageRegistries:
+{{ toYaml .Values.trustedImageRegistries | indent 6 }}
+{{ end }}

@@ -14,6 +14,11 @@ enableK8sBlockPodAddLinuxCapabilities: true
 enableK8sBlockServiceLoadBalancer: true
 enableK8sBlockServiceNodePort: true
 
+enableK8sBlockPodUntrustedImageRegistries: true
+trustedImageRegistries:
+  - docker.io
+  - gcr.io
+
 enableK8sBlockNamespaceWithoutRequiredLabels: true
 namespaceRequiredLabels:
   - k8s.io/project
