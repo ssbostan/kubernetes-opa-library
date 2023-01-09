@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-opa-gatekeeper-block-pod-proc-mount-container
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  containers:
+    - name: nginx
+      image: docker.io/nginx:latest
+      securityContext:
+        procMount: Unmasked
+        runAsNonRoot: true
