@@ -9,6 +9,7 @@ enableK8sBlockPodHostIPHostPortContainer: true
 enableK8sBlockPodProcMountContainer: true
 enableK8sBlockPodPrivilegedContainer: true
 enableK8sBlockPodContainerPrivilegeEscalation: true
+enableK8sBlockPodUnconfinedSeccompProfileContainer: true
 enableK8sBlockPodRunRootUserContainer: true
 enableK8sBlockPodAddLinuxCapabilities: true
 

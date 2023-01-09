@@ -1,0 +1,44 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodunconfinedseccompprofilecontainer
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodUnconfinedSeccompProfileContainer
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodunconfinedseccompprofilecontainer
+
+        import future.keywords.in
+
+        violation[{"msg": msg}] {
+          check_unconfined_seccomp_profile_container
+          msg := "Running containers using unconfined seccomp profile is restricted on this cluster."
+        }
+
+        check_unconfined_seccomp_profile_container {
+          input.review.object.spec.securityContext.seccompProfile.type == "Unconfined"
+        }
+
+        check_unconfined_seccomp_profile_container {
+          some container in containers
+          container.securityContext.seccompProfile.type == "Unconfined"
+        }
+
+        containers[container] {
+          container := input.review.object.spec.containers[_]
+        }
+
+        containers[container] {
+          container := input.review.object.spec.ephemeralContainers[_]
+        }
+
+        containers[container] {
+          container := input.review.object.spec.initContainers[_]
+        }
