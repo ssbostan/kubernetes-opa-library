@@ -13,6 +13,7 @@ enableK8sBlockPodUnconfinedSeccompProfileContainer: true
 enableK8sBlockPodUnconfinedAppArmorProfileContainer: true
 enableK8sBlockPodRunRootUserContainer: true
 enableK8sBlockPodAddLinuxCapabilities: true
+enableK8sBlockPodAddSysctlParameter: true
 
 enableK8sBlockServiceLoadBalancer: true
 enableK8sBlockServiceNodePort: true
