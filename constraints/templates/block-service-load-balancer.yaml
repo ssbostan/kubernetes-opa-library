@@ -2,7 +2,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockServiceLoadBalancer
 metadata:
-  name: k8s-block-service-load-balancer
+  name: default
   labels:
     app.kubernetes.io/name: kubernetes-opa-library
     app.kubernetes.io/created-by: ssbostan

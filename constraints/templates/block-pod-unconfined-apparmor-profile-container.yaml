@@ -2,7 +2,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockPodUnconfinedAppArmorProfileContainer
 metadata:
-  name: k8s-block-pod-unconfined-apparmor-profile-container
+  name: default
   labels:
     app.kubernetes.io/name: kubernetes-opa-library
     app.kubernetes.io/created-by: ssbostan
