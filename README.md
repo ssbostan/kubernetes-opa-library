@@ -1,6 +1,14 @@
 # kubernetes-opa-library
 
+[![GitHub stars](https://img.shields.io/github/stars/ssbostan/kubernetes-opa-library)](https://github.com/ssbostan/kubernetes-opa-library/stargazers)
+![LinkedIn Follow](https://shields.io/badge/style-ssbostan-black?logo=linkedin&label=LinkedIn&link=https://www.linkedin.com/in/ssbostan)
+![GitHub last commit](https://img.shields.io/github/last-commit/ssbostan/kubernetes-opa-library)
+[![GitHub forks](https://img.shields.io/github/forks/ssbostan/kubernetes-opa-library)](https://github.com/ssbostan/kubernetes-opa-library/network)
+[![GitHub issues](https://img.shields.io/github/issues/ssbostan/kubernetes-opa-library)](https://github.com/ssbostan/kubernetes-opa-library/issues)
+
 The complete library for Kubernetes OPA Gatekeeper policies with a quickly deployable Helm chart.
+
+YOU LIKE IT? STAR IT. ![GitHub Repo stars](https://img.shields.io/github/stars/ssbostan/kubernetes-opa-library?style=social)
 
 ## What do we have here?
 
