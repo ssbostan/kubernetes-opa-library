@@ -23,6 +23,9 @@ trustedImageRegistries:
   - docker.io
   - gcr.io
 
+enableK8sBlockNamespaceWithoutLabelPrefix: true
+namespacePrefixLabelName: k8s.io/project
+
 enableK8sBlockNamespaceWithoutRequiredLabels: true
 namespaceRequiredLabels:
   - k8s.io/project

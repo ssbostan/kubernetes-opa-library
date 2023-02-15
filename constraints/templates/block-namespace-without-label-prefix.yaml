@@ -1,0 +1,18 @@
+{{ if .Values.enableK8sBlockNamespaceWithoutLabelPrefix }}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockNamespaceWithoutLabelPrefix
+metadata:
+  name: default
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+    excludedNamespaces:
+{{ toYaml .Values.excludedNamespaces | indent 6 }}
+  parameters:
+    labelName: {{ .Values.namespacePrefixLabelName }}
+{{ end }}
