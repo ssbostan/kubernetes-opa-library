@@ -10,6 +10,14 @@ spec:
     spec:
       names:
         kind: K8sBlockPodAddLinuxCapabilities
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            allowedCapabilities:
+              type: array
+              items:
+                type: string
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
@@ -18,13 +26,19 @@ spec:
         import future.keywords.in
 
         violation[{"msg": msg}] {
-          check_linux_capabilities == true
+          some container in containers
+          check_container_capabilities(container.securityContext.capabilities.add)
           msg := "Adding new linux capabilities to containers is not allowed in this cluster."
         }
 
-        check_linux_capabilities {
-          some container in containers
-          container.securityContext.capabilities.add != []
+        check_container_capabilities(capabilities) {
+          some capability in capabilities
+          not check_container_allowed_capability(capability)
+        }
+
+        check_container_allowed_capability(capability) {
+          some allowedCapability in input.parameters.allowedCapabilities
+          capability == allowedCapability
         }
 
         containers[container] {

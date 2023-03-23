@@ -13,4 +13,7 @@ spec:
         kinds: ["Pod"]
     excludedNamespaces:
 {{ toYaml .Values.excludedNamespaces | indent 6 }}
+  parameters:
+    allowedCapabilities:
+{{ toYaml .Values.allowedLinuxCapabilities | indent 6 }}
 {{ end }}

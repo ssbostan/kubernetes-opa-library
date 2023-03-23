@@ -12,11 +12,14 @@ enableK8sBlockPodContainerPrivilegeEscalation: true
 enableK8sBlockPodUnconfinedSeccompProfileContainer: true
 enableK8sBlockPodUnconfinedAppArmorProfileContainer: true
 enableK8sBlockPodRunRootUserContainer: true
-enableK8sBlockPodAddLinuxCapabilities: true
 enableK8sBlockPodAddSysctlParameter: true
 
 enableK8sBlockServiceLoadBalancer: true
 enableK8sBlockServiceNodePort: true
+
+enableK8sBlockPodAddLinuxCapabilities: true
+allowedLinuxCapabilities:
+  - NET_BIND_SERVICE
 
 enableK8sBlockPodUntrustedImageRegistries: true
 trustedImageRegistries:
