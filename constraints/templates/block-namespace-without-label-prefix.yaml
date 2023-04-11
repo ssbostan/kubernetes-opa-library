@@ -1,4 +1,4 @@
-{{ if .Values.enableK8sBlockNamespaceWithoutLabelPrefix }}
+{{- if .Values.enableK8sBlockNamespaceWithoutLabelPrefix -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockNamespaceWithoutLabelPrefix
 metadata:
@@ -12,7 +12,7 @@ spec:
       - apiGroups: [""]
         kinds: ["Namespace"]
     excludedNamespaces:
-{{ toYaml .Values.excludedNamespaces | indent 6 }}
+      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
   parameters:
     labelName: {{ .Values.namespacePrefixLabelName }}
-{{ end }}
+{{- end -}}

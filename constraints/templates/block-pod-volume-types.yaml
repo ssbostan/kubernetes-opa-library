@@ -1,4 +1,4 @@
-{{ if .Values.enableK8sBlockPodVolumeTypes }}
+{{- if .Values.enableK8sBlockPodVolumeTypes -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockPodVolumeTypes
 metadata:
@@ -12,8 +12,8 @@ spec:
       - apiGroups: [""]
         kinds: ["Pod"]
     excludedNamespaces:
-{{ toYaml .Values.excludedNamespaces | indent 6 }}
+      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
   parameters:
     volumes:
-{{ toYaml .Values.blockedPodVolumeTypes | indent 6 }}
-{{ end }}
+      {{- toYaml .Values.blockedPodVolumeTypes | nindent 6 }}
+{{- end -}}

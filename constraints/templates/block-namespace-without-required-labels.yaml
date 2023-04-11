@@ -1,4 +1,4 @@
-{{ if .Values.enableK8sBlockNamespaceWithoutRequiredLabels }}
+{{- if .Values.enableK8sBlockNamespaceWithoutRequiredLabels -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockResourceWithoutRequiredLabels
 metadata:
@@ -12,8 +12,8 @@ spec:
       - apiGroups: [""]
         kinds: ["Namespace"]
     excludedNamespaces:
-{{ toYaml .Values.excludedNamespaces | indent 6 }}
+      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
   parameters:
     labels:
-{{ toYaml .Values.namespaceRequiredLabels | indent 6 }}
-{{ end }}
+      {{- toYaml .Values.namespaceRequiredLabels | nindent 6 }}
+{{- end -}}

@@ -1,4 +1,4 @@
-{{ if .Values.enableK8sBlockPodOSNameWindows }}
+{{- if .Values.enableK8sBlockPodOSNameWindows -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockPodOSNameWindows
 metadata:
@@ -12,5 +12,5 @@ spec:
       - apiGroups: [""]
         kinds: ["Pod"]
     excludedNamespaces:
-{{ toYaml .Values.excludedNamespaces | indent 6 }}
-{{ end }}
+      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
+{{- end -}}

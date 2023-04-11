@@ -1,4 +1,4 @@
-{{ if .Values.enableK8sBlockServiceLoadBalancer }}
+{{- if .Values.enableK8sBlockServiceLoadBalancer -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockServiceLoadBalancer
 metadata:
@@ -12,5 +12,5 @@ spec:
       - apiGroups: [""]
         kinds: ["Service"]
     excludedNamespaces:
-{{ toYaml .Values.excludedNamespaces | indent 6 }}
-{{ end }}
+      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
+{{- end -}}
