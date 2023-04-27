@@ -30,4 +30,5 @@ spec:
     {{- end }}
   parameters:
     {{- toYaml .parameters | nindent 4 }}
+---
 {{- end -}}

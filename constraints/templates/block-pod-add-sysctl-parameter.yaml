@@ -28,4 +28,5 @@ spec:
     namespaceSelector:
       {{- toYaml . | nindent 6 }}
     {{- end }}
+---
 {{- end -}}
