@@ -137,6 +137,15 @@ blockPodWindowsHostProcess:
     excludedNamespaces: []
     namespaceSelector: {}
 
+blockPodWithoutNodeSelector:
+  - policy: default
+    namespaces: []
+    excludedNamespaces: []
+    namespaceSelector: {}
+    parameters:
+      nodeSelector:
+        node.kubernetes.io/dedicated: "true"
+
 blockServiceLoadBalancer:
   - policy: default
     namespaces: []
