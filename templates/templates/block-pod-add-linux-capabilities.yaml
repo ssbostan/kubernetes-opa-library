@@ -14,7 +14,7 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
-            allowedCapabilities:
+            allowedLinuxCapabilities:
               type: array
               items:
                 type: string
@@ -28,7 +28,7 @@ spec:
         violation[{"msg": msg}] {
           some container in containers
           check_container_capabilities(container.securityContext.capabilities.add)
-          msg := "Adding new linux capabilities to containers is not allowed in this cluster."
+          msg := "Adding new linux capabilities to containers is not allowed in this namespace."
         }
 
         check_container_capabilities(capabilities) {
@@ -37,7 +37,7 @@ spec:
         }
 
         check_container_allowed_capability(capability) {
-          some allowedCapability in input.parameters.allowedCapabilities
+          some allowedCapability in input.parameters.allowedLinuxCapabilities
           capability == allowedCapability
         }
 

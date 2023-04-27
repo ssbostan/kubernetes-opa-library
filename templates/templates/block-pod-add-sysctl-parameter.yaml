@@ -17,7 +17,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_pod_add_sysctl_parameter
-          msg := "Adding new kernel parameters to containers is not allowed in this cluster."
+          msg := "Adding new kernel parameters to containers is not allowed in this namespace."
         }
 
         check_pod_add_sysctl_parameter {

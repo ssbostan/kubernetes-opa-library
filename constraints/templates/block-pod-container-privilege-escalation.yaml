@@ -1,8 +1,8 @@
-{{- if .Values.enableK8sBlockPodContainerPrivilegeEscalation -}}
+{{- range .Values.blockPodContainerPrivilegeEscalation -}}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sBlockPodContainerPrivilegeEscalation
 metadata:
-  name: default
+  name: {{ .policy }}
   labels:
     app.kubernetes.io/name: kubernetes-opa-library
     app.kubernetes.io/created-by: ssbostan
@@ -11,6 +11,21 @@ spec:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+    {{- if .namespaces }}
+    namespaces:
+      {{- toYaml .namespaces | nindent 6 }}
+    {{- else }}
     excludedNamespaces:
-      {{- toYaml .Values.excludedNamespaces | nindent 6 }}
+      {{- toYaml $.Values.systemExcludedNamespaces | nindent 6 }}
+      {{- with $.Values.globalExcludedNamespaces }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- with .excludedNamespaces }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+    {{- end }}
+    {{- with .namespaceSelector }}
+    namespaceSelector:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
 {{- end -}}

@@ -14,7 +14,7 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
-            labels:
+            requiredLabels:
               type: array
               items:
                 type: string
@@ -24,7 +24,7 @@ spec:
         package k8sblockresourcewithoutrequiredlabels
 
         violation[{"msg": msg}] {
-          required_labels := {label | label := input.parameters.labels[_]}
+          required_labels := {label | label := input.parameters.requiredLabels[_]}
           provided_labels := {label | input.review.object.metadata.labels[label]}
           missing_labels := required_labels - provided_labels
           count(missing_labels) > 0

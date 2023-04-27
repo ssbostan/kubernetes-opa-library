@@ -19,7 +19,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_container_proc_mount_default_value
-          msg := "Changing container procMount value is not allowed in this cluster."
+          msg := "Changing container procMount value is not allowed in this namespace."
         }
 
         check_container_proc_mount_default_value {

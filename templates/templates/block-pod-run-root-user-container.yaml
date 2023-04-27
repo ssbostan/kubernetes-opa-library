@@ -20,7 +20,7 @@ spec:
 
         violation[{"msg": msg}] {
           not container_run_as_non_root
-          msg := "Containers must run with a non-root user in this cluster."
+          msg := "Running containers with root user is restricted on this namespace."
         }
 
         containers[container] {

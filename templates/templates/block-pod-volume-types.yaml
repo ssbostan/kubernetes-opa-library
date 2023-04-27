@@ -14,7 +14,7 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
-            volumes:
+            blockedVolumeTypes:
               type: array
               items:
                 type: string
@@ -29,11 +29,11 @@ spec:
           blocked_volumes := {volume |
             input.review.object.spec.volumes[_][volume]
             volume != "name"
-            volume in input.parameters.volumes
+            volume in input.parameters.blockedVolumeTypes
           }
           count(blocked_volumes) > 0
           msg := sprintf(
-            "Mounting (%s) volume types is restricted in this cluster.",
-            [concat(", ", input.parameters.volumes)],
+            "Mounting (%s) volume types is restricted on this namespace.",
+            [concat(", ", input.parameters.blockedVolumeTypes)],
           )
         }

@@ -19,7 +19,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_unconfined_apparmor_profile_container
-          msg := "Running containers using unconfined apparmor profile is restricted on this cluster."
+          msg := "Running containers using unconfined apparmor profile is restricted on this namespace."
         }
 
         check_unconfined_apparmor_profile_container {

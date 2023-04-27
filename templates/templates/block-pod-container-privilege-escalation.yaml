@@ -17,7 +17,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_container_allow_privilege_escalation == true
-          msg := "Running containers with allowPrivilegeEscalation is restricted on this cluster."
+          msg := "Running containers with allowPrivilegeEscalation is restricted on this namespace."
         }
 
         check_container_allow_privilege_escalation {

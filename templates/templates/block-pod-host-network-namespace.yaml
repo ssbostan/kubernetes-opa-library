@@ -17,5 +17,5 @@ spec:
 
         violation[{"msg": msg}] {
           input.review.object.spec.hostNetwork == true
-          msg := "Sharing hostNetwork is restricted in this cluster."
+          msg := "Sharing host network to containers is restricted on this namespace."
         }

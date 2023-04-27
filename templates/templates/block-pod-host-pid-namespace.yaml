@@ -17,5 +17,5 @@ spec:
 
         violation[{"msg": msg}] {
           input.review.object.spec.hostPID == true
-          msg := "Sharing hostPID is restricted in this cluster."
+          msg := "Sharing host PID to containers is restricted on this namespace."
         }

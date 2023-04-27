@@ -17,7 +17,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_pod_privileged_container == true
-          msg := "Creating privileged containers is restricted on this cluster."
+          msg := "Creating privileged containers is restricted on this namespace."
         }
 
         check_pod_privileged_container {

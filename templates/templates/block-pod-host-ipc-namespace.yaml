@@ -17,5 +17,5 @@ spec:
 
         violation[{"msg": msg}] {
           input.review.object.spec.hostIPC == true
-          msg := "Sharing hostIPC is restricted in this cluster."
+          msg := "Sharing host IPC to containers is restricted on this namespace."
         }

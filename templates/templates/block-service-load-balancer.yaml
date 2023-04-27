@@ -17,5 +17,5 @@ spec:
 
         violation[{"msg": msg}] {
           input.review.object.spec.type == "LoadBalancer"
-          msg := "Creating service of LoadBalancer type is not allowed on this cluster."
+          msg := "Creating service of LoadBalancer type is not allowed on this namespace."
         }

@@ -19,7 +19,7 @@ spec:
 
         violation[{"msg": msg}] {
           check_windows_host_process == true
-          msg := "Running hostProcess windows containers is disabled in this cluster."
+          msg := "Running hostProcess Windows containers is disabled in this namespace."
         }
 
         check_windows_host_process {

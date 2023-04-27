@@ -17,5 +17,5 @@ spec:
 
         violation[{"msg": msg}] {
           lower(input.review.object.spec.os.name) == "windows"
-          msg := "Running windows pods is disabled in this cluster."
+          msg := "Running Windows pods is restricted on this namespace."
         }
