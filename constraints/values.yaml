@@ -153,15 +153,22 @@ blockPodWithoutTolerations:
     namespaceSelector: {}
     parameters:
       tolerations:
-        - key: dedicated
-          value: "true"
-          operator: Equal
-          effect: NoSchedule
-        - key: dedicated
-          value: "true"
-          operator: Equal
+        - effect: NoExecute
+          key: node.kubernetes.io/not-ready
+          operator: Exists
           tolerationSeconds: 300
-          effect: NoExecute
+        - effect: NoExecute
+          key: node.kubernetes.io/unreachable
+          operator: Exists
+          tolerationSeconds: 300
+        - effect: NoSchedule
+          key: dedicated
+          operator: Equal
+          value: "true"
+        - effect: NoExecute
+          key: dedicated
+          operator: Equal
+          value: "true"
 
 blockServiceLoadBalancer:
   - policy: default
