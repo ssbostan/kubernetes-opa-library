@@ -1,0 +1,34 @@
+{{- range .Values.blockPodWithoutTolerations -}}
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockPodWithoutTolerations
+metadata:
+  name: {{ .policy }}
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    {{- if .namespaces }}
+    namespaces:
+      {{- toYaml .namespaces | nindent 6 }}
+    {{- else }}
+    excludedNamespaces:
+      {{- toYaml $.Values.systemExcludedNamespaces | nindent 6 }}
+      {{- with $.Values.globalExcludedNamespaces }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+      {{- with .excludedNamespaces }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
+    {{- end }}
+    {{- with .namespaceSelector }}
+    namespaceSelector:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+  parameters:
+    {{- toYaml .parameters | nindent 4 }}
+---
+{{- end -}}

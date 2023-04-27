@@ -146,6 +146,23 @@ blockPodWithoutNodeSelector:
       nodeSelector:
         node.kubernetes.io/dedicated: "true"
 
+blockPodWithoutTolerations:
+  - policy: default
+    namespaces: []
+    excludedNamespaces: []
+    namespaceSelector: {}
+    parameters:
+      tolerations:
+        - key: dedicated
+          value: "true"
+          operator: Equal
+          effect: NoSchedule
+        - key: dedicated
+          value: "true"
+          operator: Equal
+          tolerationSeconds: 300
+          effect: NoExecute
+
 blockServiceLoadBalancer:
   - policy: default
     namespaces: []

@@ -1,0 +1,42 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sblockpodwithouttolerations
+  labels:
+    app.kubernetes.io/name: kubernetes-opa-library
+    app.kubernetes.io/created-by: ssbostan
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sBlockPodWithoutTolerations
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            tolerations:
+              type: array
+              items:
+                type: object
+                properties:
+                  effect:
+                    type: string
+                  key:
+                    type: string
+                  operator:
+                    type: string
+                  tolerationSeconds:
+                    type: integer
+                  value:
+                    type: string
+                required:
+                  - operator
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sblockpodwithouttolerations
+
+        violation[{"msg": msg}] {
+          not input.review.object.spec.tolerations == input.parameters.tolerations
+          msg := "Running Pods without proper tolerations is restricted on this namespace."
+        }
