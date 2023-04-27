@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: test-opa-gatekeeper-namespace
+  name: test-opa-gatekeeper-block-namespace-without-required-labels
   labels:
     app.kubernetes.io/name: kubernetes-opa-library
     app.kubernetes.io/created-by: ssbostan

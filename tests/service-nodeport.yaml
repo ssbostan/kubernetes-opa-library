@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-opa-gatekeeper-block-nodeport
+  name: test-opa-gatekeeper-block-service-nodeport
   labels:
     app.kubernetes.io/name: kubernetes-opa-library
     app.kubernetes.io/created-by: ssbostan
