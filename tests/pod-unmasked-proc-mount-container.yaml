@@ -1,3 +1,5 @@
+# This test needs the ProcMountType feature flag to be enabled.
+# Otherwise, Kubernetes changes the value to Default, and provided value is ignored.
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,7 +10,6 @@ metadata:
 spec:
   containers:
     - name: nginx
-      image: docker.io/nginx:latest
+      image: nginx:latest
       securityContext:
         procMount: Unmasked
-        runAsNonRoot: true
