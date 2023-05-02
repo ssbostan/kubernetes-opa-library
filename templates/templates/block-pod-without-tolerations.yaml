@@ -36,7 +36,15 @@ spec:
       rego: |
         package k8sblockpodwithouttolerations
 
+        import future.keywords.in
+
         violation[{"msg": msg}] {
-          not input.review.object.spec.tolerations == input.parameters.tolerations
+          some toleration in input.parameters.tolerations
+          not check_toleration(toleration)
           msg := "Running Pods without proper tolerations is restricted on this namespace."
+        }
+
+        check_toleration(t) {
+          some toleration in input.review.object.spec.tolerations
+          toleration == t
         }
