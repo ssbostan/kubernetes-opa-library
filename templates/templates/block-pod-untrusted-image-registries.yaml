@@ -33,13 +33,13 @@ spec:
 
         check_container_image_registry_address {
           every container in containers {
-            startswith(lower(container.image), trusted_image_registries[_])
+            glob.match(trusted_image_registries[_], null, lower(container.image))
           }
         }
 
         trusted_image_registries[registry] {
           some r in input.parameters.trustedImageRegistries
-          registry := sprintf("%s/", [lower(r)])
+          registry := sprintf("%s/*", [lower(r)])
         }
 
         containers[container] {
